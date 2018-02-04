@@ -1,0 +1,17 @@
+#graph-1 {
+    height: 100%;
+
+    #sourceNode {
+        left: 100px;
+        top: 100px;
+    }
+
+    #targetNode {
+        left: 300px;
+        top: 200px;
+    }
+}
+:host {
+    display: block;
+    height: 100%;
+}

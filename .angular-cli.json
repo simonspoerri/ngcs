@@ -38,7 +38,7 @@
         "lib"
       ]
     },
-    "styleExt": "css",
+    "styleExt": "scss",
     "component": {}
   },
   "warnings": {
@@ -59,7 +59,7 @@
       "test": "../../../test.js",
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "../../../tsconfig.spec.json",
-      "prefix": "app",
+      "prefix": "ngcs",
       "styles": [
         "styles.css"
       ],
@@ -74,6 +74,7 @@
       "name": "graph",
       "root": "libs/graph/src",
       "test": "../../../test.js",
+      "prefix": "ngcs",
       "appRoot": ""
     }
   ]
