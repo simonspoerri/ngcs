@@ -11,13 +11,12 @@ export class GraphComponent implements OnInit {
   ngOnInit() {}
 
   public getPositionOfChildById(id: string) {
-    
     let element: HTMLElement = this.element.nativeElement.querySelector(`#${id}`);
-    if(element) {
-      let offsetLeft = element.offsetLeft;
-      let offsetTop = element.offsetTop;
-      
-      while(element.parentElement !== this.element.nativeElement) {
+    if (element) {
+      let offsetLeft = element.offsetLeft + element.offsetWidth / 2;
+      let offsetTop = element.offsetTop + element.offsetHeight / 2;
+
+      while (element.parentElement !== this.element.nativeElement) {
         element = element.parentElement;
         offsetLeft += element.offsetLeft;
         offsetTop += element.offsetTop;
@@ -26,8 +25,8 @@ export class GraphComponent implements OnInit {
       return {
         x: offsetLeft,
         y: offsetTop
-      }
+      };
     }
-    return {x: 0, y: 0};
+    return { x: 0, y: 0 };
   }
 }

@@ -1,6 +1,10 @@
 #graph-1 {
     height: 100%;
 
+    .node {
+        padding: 10px;
+    }
+
     #sourceNode {
         left: 100px;
         top: 100px;
@@ -14,4 +18,5 @@
 :host {
     display: block;
     height: 100%;
+    padding: 20px;
 }
