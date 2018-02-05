@@ -18,9 +18,8 @@ export class ConnectionComponent implements OnInit, OnChanges {
   @Input() to: string;
 
   get polyLinePoints(): string {
-    const start = this.startPoint;
-    const end = this.endPoint;
-    return `${start.x},${start.y} ${end.x},${end.y}`;
+    const points = this.manhattenLine(this.startPoint, this.endPoint)
+    return points.map(p => `${p.x},${p.y}`).join(' ')
   }
 
   get startPoint(): Point {
@@ -35,8 +34,25 @@ export class ConnectionComponent implements OnInit, OnChanges {
   ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['from']) {
-      // const from = changes['from']
+    if (changes['from'] || changes['to']) {
+      this.graph.registerConnection(this.from, this.to);
+    }
+  }
+
+  private directLine(start: Point, end: Point): Point[] {
+    return [start, end];
+  }
+
+  private manhattenLine(start: Point, end: Point): Point[] {
+    const rangeX = end.x - start.x;
+    const rangeY = end.y - start.y;
+    if(Math.abs(rangeX) > Math.abs(rangeY)) {
+      const midX = start.x + rangeX / 2;
+      return [start, {x: midX, y: start.y}, {x: midX, y: end.y}, end];
+    }
+    else {
+      const midY = start.y + rangeY / 2;
+      return [start, {x: start.x, y: midY}, {x: end.x, y: midY}, end];
     }
   }
 }

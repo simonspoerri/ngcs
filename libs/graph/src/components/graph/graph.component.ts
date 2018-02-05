@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
+import { PortComponent } from '../port/port.component';
 
 @Component({
   selector: 'ngcs-graph',
@@ -6,6 +7,9 @@ import { Component, OnInit, ElementRef } from '@angular/core';
   styleUrls: ['./graph.component.scss']
 })
 export class GraphComponent implements OnInit {
+  
+  private readonly ports: {[id: string]: PortComponent } = {};
+
   constructor(private element: ElementRef) {}
 
   ngOnInit() {}
@@ -28,5 +32,23 @@ export class GraphComponent implements OnInit {
       };
     }
     return { x: 0, y: 0 };
+  }
+
+  public registerPort(id: string, port: PortComponent) {
+    this.ports[id] = port;
+  }
+
+  public unregisterPort(id: string) {
+    delete this.ports[id];
+  }
+
+  public registerConnection(fromPortId: string, toPortId: string) {
+    const sourcePort = this.ports[fromPortId];
+    const targetPort = this.ports[toPortId];
+    
+    if(sourcePort && targetPort) {
+      sourcePort.connectTo(targetPort);
+      targetPort.connectTo(sourcePort);
+    }
   }
 }
