@@ -1,11 +1,7 @@
 import { Component, Inject, OnInit, OnChanges, Input, SimpleChanges, SimpleChange, ElementRef } from '@angular/core';
 
 import { GraphComponent } from '../graph/graph.component';
-
-interface Point {
-  x: number;
-  y: number;
-}
+import { Point } from '../../model/Point';
 
 @Component({
   selector: 'ngcs-connection',
